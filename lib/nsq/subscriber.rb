@@ -92,6 +92,7 @@ module NSQ
 
     # Threshold for a connection where it's time to send a new READY message
     def ready_threshold #:nodoc:
+      return 0 if @max_in_flight == 0 ||  @connection_hash.size == 0
       @max_in_flight / @connection_hash.size / 4
     end
 
